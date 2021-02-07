@@ -16,7 +16,7 @@ dependencies:
   shared_preferences: ^0.5.12+4
   http: ^0.12.2
   flutter_statusbarcolor: ^0.2.3
-
+  dynamic_theme: ^1.0.0
 
 dev_dependencies:
   flutter_test:

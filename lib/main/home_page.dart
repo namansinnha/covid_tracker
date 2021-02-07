@@ -4,6 +4,7 @@ import 'package:covid_tracker/helper/constants.dart';
 import 'package:covid_tracker/panels/info_panel.dart';
 import 'package:covid_tracker/panels/most_effected_countries_panel.dart';
 import 'package:covid_tracker/panels/world_wide_panel.dart';
+import 'package:covid_tracker/screens/regional_data_secreen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -24,8 +25,8 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
-  fetchCountriesData() async {
-    http.Response response = await http.get(COUNTRY_DATA_URL);
+  fetchMostEffectedCountriesData() async {
+    http.Response response = await http.get(MOST_EFFECTED_COUNTRY_DATA_URL);
     setState(() {
       countryData = jsonDecode(response.body);
     });
@@ -36,7 +37,7 @@ class _HomePageState extends State<HomePage> {
     super.initState();
 
     fetchWorldwideData();
-    fetchCountriesData();
+    fetchMostEffectedCountriesData();
   }
 
   @override
@@ -79,18 +80,26 @@ class _HomePageState extends State<HomePage> {
                     style:
                         TextStyle(fontWeight: FontWeight.bold, fontSize: 22.0),
                   ),
-                  Material(
-                    color: primaryColor,
-                    borderRadius: BorderRadius.all(Radius.circular(12)),
-                    elevation: 16.0,
-                    child: Container(
-                      padding: EdgeInsets.all(12),
-                      child: Text(
-                        'Regional',
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 16,
-                            color: Colors.white),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) {
+                        return (RegionalDataScreen());
+                      }));
+                    },
+                    child: Material(
+                      color: primaryColor,
+                      borderRadius: BorderRadius.all(Radius.circular(12)),
+                      elevation: 16.0,
+                      child: Container(
+                        padding: EdgeInsets.all(12),
+                        child: Text(
+                          'Regional',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 16,
+                              color: Colors.white),
+                        ),
                       ),
                     ),
                   )
@@ -98,14 +107,14 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             worldData == null
-                ? CircularProgressIndicator()
+                ? Center(child: CircularProgressIndicator())
                 : WorldWidePanel(worldData: worldData),
             Padding(
               padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
               child: Row(
                 children: [
                   Text(
-                    'Glance on Effected Countries',
+                    '05 Most Effected Countries',
                     style:
                         TextStyle(fontWeight: FontWeight.bold, fontSize: 22.0),
                   ),
@@ -113,7 +122,7 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             countryData == null
-                ? CircularProgressIndicator()
+                ? Center(child: CircularProgressIndicator())
                 : MostEffectedCountriesPanel(countryData: countryData),
             InfoPanel(),
             Padding(

@@ -46,7 +46,7 @@ class MostEffectedCountriesPanel extends StatelessWidget {
           ),
         );
       },
-      itemCount: 8,
+      itemCount: 5,
     );
   }
 }

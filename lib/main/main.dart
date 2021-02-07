@@ -1,14 +1,19 @@
+import 'package:covid_tracker/helper/constants.dart';
+import 'package:covid_tracker/main/home_page.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_statusbarcolor/flutter_statusbarcolor.dart';
-
-import 'file:///A:/FlutterDevelopement/FlutterProjects/CovidTracker/covid_tracker/lib/helper/constants.dart';
-import 'file:///A:/FlutterDevelopement/FlutterProjects/CovidTracker/covid_tracker/lib/main/home_page.dart';
 
 void main() {
   FlutterStatusbarcolor.setStatusBarColor(primaryColor);
   FlutterStatusbarcolor.setStatusBarWhiteForeground(true);
-  runApp(
-    MaterialApp(
+  runApp(SetUpTheme());
+}
+
+class SetUpTheme extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         fontFamily: 'SourceSansPro',
@@ -16,6 +21,6 @@ void main() {
         scaffoldBackgroundColor: Colors.white,
       ),
       home: HomePage(),
-    ),
-  );
+    );
+  }
 }

@@ -31,7 +31,7 @@ class StatusPanel extends StatelessWidget {
           Text(
             panelCount,
             style: TextStyle(
-                color: textColor, fontWeight: FontWeight.bold, fontSize: 32.0),
+                color: textColor, fontWeight: FontWeight.bold, fontSize: 20.0),
           ),
         ],
       ),

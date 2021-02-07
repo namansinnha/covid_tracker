@@ -6,6 +6,7 @@ final String BASE_URL = 'https://corona.lmao.ninja/v3/covid-19';
 
 final String WORLD_DATA_URL = '$BASE_URL/all';
 final String COUNTRY_DATA_URL = '$BASE_URL/countries';
+final String MOST_EFFECTED_COUNTRY_DATA_URL = '$BASE_URL/countries?sort=cases';
 
 class DataSource {
   static String quote =
